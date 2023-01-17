@@ -13,9 +13,10 @@ class Home extends StatelessWidget {
       backgroundColor: bg,
       appBar: _buildAppBar(bg),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
         child: Column(children: [
           searchBox(),
+          
         ]),
       ),
     );
@@ -25,23 +26,23 @@ class Home extends StatelessWidget {
     final Color bg = Color.fromARGB(255, 116, 88, 88),
         dark = const Color.fromARGB(255, 78, 85, 90);
     return Container(
-      padding: const EdgeInsets.all(3),
+      padding: const EdgeInsets.all(1),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
       child: TextField(
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(6),
+          contentPadding: const EdgeInsets.all(6),
           prefixIcon: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Icon(
               Icons.search_rounded,
               color: dark,
               size: 20,
             ),
           ),
-          prefixIconConstraints: BoxConstraints(
+          prefixIconConstraints: const BoxConstraints(
             maxHeight: 20,
             minWidth: 25,
           ),
