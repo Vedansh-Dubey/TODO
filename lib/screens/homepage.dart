@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:todo/constants/colors.dart';
+import '../model/todo_model.dart';
 import '../widgets/todolist.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
-
+  Home({super.key});
+  final todoList = Todo.todoList();
   @override
   Widget build(BuildContext context) {
     final Color bg = Color.fromARGB(255, 235, 235, 235),
@@ -20,7 +21,7 @@ class Home extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                ToDoList(),
+                for (Todo todoo in todoList) ToDoList(todo: todoo),
               ],
             ),
           )
