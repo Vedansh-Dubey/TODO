@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:todo/constants/colors.dart';
+import '../widgets/todolist.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -16,7 +17,13 @@ class Home extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
         child: Column(children: [
           searchBox(),
-          
+          Expanded(
+            child: ListView(
+              children: [
+                ToDoList(),
+              ],
+            ),
+          )
         ]),
       ),
     );
