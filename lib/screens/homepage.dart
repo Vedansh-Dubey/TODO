@@ -14,18 +14,35 @@ class Home extends StatelessWidget {
     return Scaffold(
       backgroundColor: bg,
       appBar: _buildAppBar(bg),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-        child: Column(children: [
-          searchBox(),
-          Expanded(
-            child: ListView(
+      body: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+            child: Column(
               children: [
-                for (Todo todoo in todoList) ToDoList(todo: todoo),
+                searchBox(),
+                Expanded(
+                  child: ListView(
+                    children: [
+                      for (Todo todoo in todoList) ToDoList(todo: todoo),
+                    ],
+                  ),
+                )
               ],
             ),
-          )
-        ]),
+          ),
+        ],
+      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        
+        label: Text('ToDo', style: TextStyle(fontSize: 20)),
+        icon: Icon(
+          Icons.add,
+          size: 25,
+        ),
+        backgroundColor: dark,
       ),
     );
   }
