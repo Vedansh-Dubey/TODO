@@ -37,30 +37,59 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           showDialog(
-            context: context,
-            builder: (context) {
-              return Container(
-                child: AlertDialog(
-                  title: const Text('Add ToDo'),
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  scrollable: true,
+                  title: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'ToDo',
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Color.fromARGB(255, 217, 163, 2),
+                      ),
+                    ),
+                  ),
+                  content: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Form(
+                      child: Column(
+                        children: <Widget>[
+                          TextFormField(
+                            decoration: InputDecoration(
+                              focusColor: Color.fromARGB(255, 217, 163, 2),
+                              fillColor: Color.fromARGB(255, 217, 163, 2),
+                              labelText: 'Your Task',
+                              icon: Icon(Icons.edit),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text('Add'),
-                    )
+                    FloatingActionButton.extended(
+                        label:
+                            const Text('Add', style: TextStyle(fontSize: 20)),
+                        icon: const Icon(
+                          Icons.add,
+                          size: 20,
+                        ),
+                        backgroundColor: Color.fromARGB(255, 217, 163, 2),
+                        onPressed: () {
+                          // your code
+                        })
                   ],
-                ),
-              );
-            },
-          );
+                );
+              });
         },
         label: const Text('ToDo', style: TextStyle(fontSize: 20)),
         icon: const Icon(
           Icons.add,
           size: 25,
         ),
-        backgroundColor: dark,
+        backgroundColor: Color.fromARGB(255, 217, 163, 2),
       ),
     );
   }
@@ -82,7 +111,7 @@ class Home extends StatelessWidget {
               'Ab Kya Karna Hai ?',
               style: TextStyle(
                 fontSize: 25,
-                color: dark,
+                color: Color.fromARGB(255, 9, 9, 9),
               ),
             ),
             Icon(

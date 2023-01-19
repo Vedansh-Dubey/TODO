@@ -20,7 +20,7 @@ class ToDoList extends StatelessWidget {
           todo.isDone
               ? Icons.check_box
               : Icons.check_box_outline_blank_outlined,
-          color: Color.fromARGB(255, 191, 73, 223),
+          color: Color.fromARGB(255, 217, 163, 2),
           size: 24,
         ),
         title: Text(
