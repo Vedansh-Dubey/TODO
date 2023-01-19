@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:todo/constants/colors.dart';
 import '../model/todo_model.dart';
+import '../widgets/searchbox.dart';
 import '../widgets/todolist.dart';
 
 class Home extends StatelessWidget {
@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
   final todoList = Todo.todoList();
   @override
   Widget build(BuildContext context) {
-    final Color bg = Color.fromARGB(255, 235, 235, 235),
+    Color bg = const Color.fromARGB(255, 235, 235, 235),
         dark = const Color.fromARGB(255, 78, 85, 90);
     return Scaffold(
       backgroundColor: bg,
@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
             child: Column(
               children: [
-                searchBox(),
+                SearchBox(),
                 Expanded(
                   child: ListView(
                     children: [
@@ -35,46 +35,32 @@ class Home extends StatelessWidget {
       ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        
-        label: Text('ToDo', style: TextStyle(fontSize: 20)),
-        icon: Icon(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return Container(
+                child: AlertDialog(
+                  title: const Text('Add ToDo'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('Add'),
+                    )
+                  ],
+                ),
+              );
+            },
+          );
+        },
+        label: const Text('ToDo', style: TextStyle(fontSize: 20)),
+        icon: const Icon(
           Icons.add,
           size: 25,
         ),
         backgroundColor: dark,
-      ),
-    );
-  }
-
-  Widget searchBox() {
-    final Color bg = Color.fromARGB(255, 116, 88, 88),
-        dark = const Color.fromARGB(255, 78, 85, 90);
-    return Container(
-      padding: const EdgeInsets.all(1),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: TextField(
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.all(6),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Icon(
-              Icons.search_rounded,
-              color: dark,
-              size: 20,
-            ),
-          ),
-          prefixIconConstraints: const BoxConstraints(
-            maxHeight: 20,
-            minWidth: 25,
-          ),
-          border: InputBorder.none,
-          hintText: 'Search',
-          hintStyle: TextStyle(color: dark),
-        ),
       ),
     );
   }
