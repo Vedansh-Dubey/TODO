@@ -9,8 +9,7 @@ class Home extends StatelessWidget {
   final todoList = Todo.todoList();
   @override
   Widget build(BuildContext context) {
-    Color bg = const Color.fromARGB(255, 235, 235, 235),
-        dark = const Color.fromARGB(255, 78, 85, 90);
+    Color bg = const Color.fromARGB(255, 235, 235, 235);
     return Scaffold(
       backgroundColor: bg,
       appBar: _buildAppBar(bg),
@@ -41,7 +40,7 @@ class Home extends StatelessWidget {
               builder: (BuildContext context) {
                 return AlertDialog(
                   scrollable: true,
-                  title: Align(
+                  title: const Align(
                     alignment: Alignment.center,
                     child: Text(
                       'ToDo',
@@ -57,7 +56,7 @@ class Home extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               focusColor: Color.fromARGB(255, 217, 163, 2),
                               fillColor: Color.fromARGB(255, 217, 163, 2),
                               labelText: 'Your Task',
@@ -76,7 +75,7 @@ class Home extends StatelessWidget {
                           Icons.add,
                           size: 20,
                         ),
-                        backgroundColor: Color.fromARGB(255, 217, 163, 2),
+                        backgroundColor: const Color.fromARGB(255, 217, 163, 2),
                         onPressed: () {
                           // your code
                         })
@@ -89,13 +88,12 @@ class Home extends StatelessWidget {
           Icons.add,
           size: 25,
         ),
-        backgroundColor: Color.fromARGB(255, 217, 163, 2),
+        backgroundColor: const Color.fromARGB(255, 217, 163, 2),
       ),
     );
   }
 
   AppBar _buildAppBar(Color bg) {
-    const Color dark = Color.fromARGB(255, 78, 85, 90);
     return AppBar(
       backgroundColor: bg,
       elevation: 0,
