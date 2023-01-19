@@ -5,6 +5,8 @@ import 'screens/homepage.dart';
 import 'package:cron/cron.dart';
 
 void main() {
+  ScheduleTask1();
+  ScheduleTask2();
   WidgetsFlutterBinding.ensureInitialized();
 
   AwesomeNotifications().initialize(null, // icon for your app notification
@@ -30,8 +32,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-    ScheduleTask1();
-    ScheduleTask2();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'TODO App',
