@@ -4,9 +4,16 @@ import '../model/todo_model.dart';
 import '../widgets/searchbox.dart';
 import '../widgets/todolist.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final todoList = Todo.todoList();
+  final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Color bg = const Color.fromARGB(255, 235, 235, 235);
@@ -23,7 +30,12 @@ class Home extends StatelessWidget {
                 Expanded(
                   child: ListView(
                     children: [
-                      for (Todo todoo in todoList) ToDoList(todo: todoo),
+                      for (Todo todoo in todoList)
+                        ToDoList(
+                          todo: todoo,
+                          todochanged: todo_change,
+                          delete_task: delete_todo_task,
+                        )
                     ],
                   ),
                 )
@@ -77,7 +89,7 @@ class Home extends StatelessWidget {
                         ),
                         backgroundColor: const Color.fromARGB(255, 217, 163, 2),
                         onPressed: () {
-                          // your code
+                          todo_adder(controller.text);
                         })
                   ],
                 );
@@ -91,6 +103,27 @@ class Home extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 217, 163, 2),
       ),
     );
+  }
+
+  void todo_adder(String task) {
+    setState(() {
+      todoList.add(Todo(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          todoItem: task));
+    });
+    controller.clear();
+  }
+
+  void delete_todo_task(String id) {
+    setState(() {
+      todoList.removeWhere((item) => item.id == id);
+    });
+  }
+
+  void todo_change(Todo todo) {
+    setState(() {
+      todo.isDone = !todo.isDone;
+    });
   }
 
   AppBar _buildAppBar(Color bg) {
