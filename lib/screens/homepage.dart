@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final todoList = Todo.todoList();
-  final controller = TextEditingController();
+  final textcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Color bg = const Color.fromARGB(255, 235, 235, 235);
@@ -67,7 +67,8 @@ class _HomeState extends State<Home> {
                     child: Form(
                       child: Column(
                         children: <Widget>[
-                          TextFormField(
+                          TextField(
+                            controller: textcontroller,
                             decoration: const InputDecoration(
                               focusColor: Color.fromARGB(255, 217, 163, 2),
                               fillColor: Color.fromARGB(255, 217, 163, 2),
@@ -89,8 +90,9 @@ class _HomeState extends State<Home> {
                         ),
                         backgroundColor: const Color.fromARGB(255, 217, 163, 2),
                         onPressed: () {
-                          todo_adder(controller.text);
-                        })
+                          todo_adder(textcontroller.text);
+                          Navigator.pop(context);
+                        }),
                   ],
                 );
               });
@@ -111,7 +113,7 @@ class _HomeState extends State<Home> {
           id: DateTime.now().millisecondsSinceEpoch.toString(),
           todoItem: task));
     });
-    controller.clear();
+    textcontroller.clear();
   }
 
   void delete_todo_task(String id) {
@@ -130,27 +132,30 @@ class _HomeState extends State<Home> {
     return AppBar(
       backgroundColor: bg,
       elevation: 0,
-      title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Icon(
-              Icons.menu,
-              color: tdBlack,
-              size: 32,
-            ),
-            Text(
-              'Ab Kya Karna Hai ?',
-              style: TextStyle(
-                fontSize: 25,
-                color: Color.fromARGB(255, 9, 9, 9),
-              ),
-            ),
-            Icon(
-              Icons.delete_forever,
-              color: Colors.red,
-              size: 35,
-            ),
-          ]),
+      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Icon(
+          Icons.menu,
+          color: tdBlack,
+          size: 32,
+        ),
+        Text(
+          'Ab Kya Karna Hai ?',
+          style: TextStyle(
+            fontSize: 25,
+            color: Color.fromARGB(255, 9, 9, 9),
+          ),
+        ),
+        IconButton(
+          onPressed: () {
+            todoList.clear();
+          },
+          icon: Icon(
+            Icons.delete_forever,
+            size: 35,
+            color: Colors.red,
+          ),
+        ),
+      ]),
     );
   }
 }
